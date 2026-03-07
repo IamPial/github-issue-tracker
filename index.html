@@ -33,6 +33,44 @@
     <title>Github Issue Tracker | Login</title>
   </head>
   <body>
-    <main></main>
+    <main>
+      <fieldset
+        class="fieldset bg-base-200 border-base-300 rounded-box w-md mx-auto border p-4"
+      >
+        <div class="text-center mb-4">
+          <img
+            class="mx-auto mb-3"
+            src="./assets/github-logo.png"
+            alt="github-logo"
+          />
+          <h2 class="text-neutral text-2xl font-semibold mb-1">
+            GitHub Issues Tracker
+          </h2>
+          <p class="text-[14px] text-slate-500">
+            Sign in to manage your issues
+          </p>
+        </div>
+
+        <label class="label text-neutral-900 font-medium text-[16px]"
+          >Username</label
+        >
+        <input type="text" class="input w-full" placeholder="Enter Username" />
+        <p class="text-[#4A00FF]">Default: admin</p>
+
+        <label class="label text-neutral-900 font-medium text-[16px]"
+          >Password</label
+        >
+        <input type="password" class="input w-full" placeholder="Password" />
+        <p class="text-[#4A00FF]">Default: admin123</p>
+
+        <button class="btn btn-primary mt-4">Sign In</button>
+
+        <div class="w-full flex items-center gap-1 mt-3">
+          <span class="border border-gray-300 w-[50%]"></span>
+          <span class="text-[16px]">OR</span>
+          <span class="border border-gray-300 w-[50%]"></span>
+        </div>
+      </fieldset>
+    </main>
   </body>
 </html>
