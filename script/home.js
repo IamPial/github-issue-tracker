@@ -2,7 +2,6 @@
 const allBtn = document.getElementById("all");
 const openBtn = document.getElementById("open");
 const closedBtn = document.getElementById("closed");
-console.log(allBtn, openBtn, closedBtn);
 
 function showActive(id) {
   //added classes from the active btn
