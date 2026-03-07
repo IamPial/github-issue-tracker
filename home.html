@@ -72,13 +72,35 @@
     <main>
       <!-- active button section start -->
       <section class="w-11/12 mx-auto pt-5 sm:pt-10">
-        <div class="shadow-sm rounded-lg p-6 text-center sm:text-left">
-          <button class="btn w-30 text-slate-500">All</button>
-          <button class="btn w-30 text-slate-500">Open</button>
-          <button class="btn w-30 text-slate-500">Closed</button>
+        <div
+          class="shadow-sm flex gap-2 rounded-lg p-6 text-center sm:text-left"
+        >
+          <button
+            onclick="showActive('all')"
+            id="all"
+            class="btn btn-primary w-30 text-slate-500"
+          >
+            All
+          </button>
+          <button
+            onclick="showActive('open')"
+            id="open"
+            class="btn bg-base-200 w-30 text-slate-500"
+          >
+            Open
+          </button>
+          <button
+            onclick="showActive('closed')"
+            id="closed"
+            class="btn bg-base-200 w-30 text-slate-500"
+          >
+            Closed
+          </button>
         </div>
       </section>
       <!-- active button section end -->
     </main>
+
+    <script src="./script/home.js"></script>
   </body>
 </html>
