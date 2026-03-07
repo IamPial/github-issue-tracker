@@ -35,7 +35,7 @@
   <body>
     <main>
       <fieldset
-        class="fieldset bg-base-200 border-base-300 rounded-box w-md mx-auto border p-4"
+        class="fieldset bg-base-200 border-base-300 rounded-box w-sm md:w-md mx-auto border shadow-xl mt-2 p-4"
       >
         <div class="text-center mb-4">
           <img
@@ -65,10 +65,22 @@
 
         <button class="btn btn-primary mt-4">Sign In</button>
 
-        <div class="w-full flex items-center gap-1 mt-3">
+        <!-- divider -->
+        <div class="w-full flex items-center gap-1 my-2">
           <span class="border border-gray-300 w-[50%]"></span>
           <span class="text-[16px]">OR</span>
           <span class="border border-gray-300 w-[50%]"></span>
+        </div>
+
+        <!-- demo credentials -->
+        <div class="text-center">
+          <h4 class="text-sm text-slate-500">Demo Credentials:</h4>
+          <p class="text-[16px] font-semibold mt-4">
+            Username:<span class="text-[16px] font-normal"> admin</span>
+          </p>
+          <p class="text-[16px] font-semibold">
+            Password:<span class="text-[16px] font-normal"> admin123</span>
+          </p>
         </div>
       </fieldset>
     </main>
