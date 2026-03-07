@@ -14,7 +14,8 @@ signInBtn.addEventListener("click", () => {
   }
 
   if (textInput.value == "admin" && passInput.value == "admin123") {
-    alert("Login successful");
+    // alert("Login successful");
+    window.location.assign("../home.html");
   } else {
     alert("Please follow the credentials given below");
   }
