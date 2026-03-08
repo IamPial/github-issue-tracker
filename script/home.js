@@ -1,3 +1,5 @@
+let openArr = [];
+
 //find the necessary elements
 const allBtn = document.getElementById("all");
 const openBtn = document.getElementById("open");
@@ -30,10 +32,12 @@ async function showActive(id) {
 
   if (activeBtn == allBtn) {
     issuesTitle.innerText = data.data.length + " " + "Issues";
+    ShowAllIssues(data.data);
   }
   if (activeBtn == openBtn) {
     const openIssues = data.data.filter((open) => open.status == "open");
     issuesTitle.innerText = openIssues.length + " " + "Issues";
+    generateOpenCards();
   }
   if (activeBtn == closedBtn) {
     const closedIssues = data.data.filter(
@@ -126,6 +130,58 @@ function ShowAllIssues(issues) {
   });
 }
 
-// TODO: work this badge function
+//generate cards for open status
+const generateOpenCards = async () => {
+  allCards.innerHTML = "";
+  const res = await fetch(
+    "https://phi-lab-server.vercel.app/api/v1/lab/issues",
+  );
+  const data = await res.json();
+  data.data.map((d) => (d.status == "open" ? openArr.push(d) : "hell"));
+  openArr.forEach((open) => {
+    const div = document.createElement("div");
+    div.className =
+      "card bg-base-100 shadow-md rounded-xl border border-gray-200";
+    div.innerHTML = `
+      <div class="card-body p-0 border-t-3 rounded-xl border-green-500 ">
+              <div class="p-4 space-y-3 h-full">
+                <div class="flex justify-between items-center">
+                  <img src="./assets/Open-Status.png" />
+                  ${
+                    open.priority == "high"
+                      ? `<span
+                    class="badge badge-error bg-red-100 text-error border-0 rounded-full uppercase px-6 py-3.5"
+                    >${open.priority}</span>`
+                      : `${
+                          open.priority == "medium"
+                            ? `<span
+      class="badge badge-error bg-yellow-100 text-yellow-500 border-0 rounded-full uppercase px-6 py-3.5">${open.priority}
+    </span>`
+                            : `<span class="badge badge-error bg-gray-200 text-gray-400 border-0 rounded-full uppercase px-6 py-3.5">${open.priority}</span>`
+                        }`
+                  }
+                </div>
+                <div class="h-24">
+                  <h2 class="card-title font-semibold text-[16px] ">
+                    ${open.title}
+                  </h2>
+                  <p class="line-clamp-2 text-sm text-gray-500">
+                    ${open.description}
+                  </p>
+                </div>
+                <div id="show-badge" class="card-actions justify-start gap-1">
+                  ${generateBadgeStatus(open.labels)}
+                </div>
+              </div>
+              <div class="bg-gray-300 w-full h-0.5"></div>
+              <div class="p-4 space-y-2">
+                <p class="text-sm text-gray-500">#1 by ${open.author}</p>
+                <p class="text-sm text-gray-500">${new Date(open.createdAt).toLocaleDateString()}</p>
+              </div>
+            </div>
+    `;
+    allCards.appendChild(div);
+  });
+};
 
 loadIssues();
