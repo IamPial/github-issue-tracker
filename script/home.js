@@ -56,7 +56,7 @@ async function showActive(id) {
   }
 }
 
-// load single  issues
+// load  issues
 const loadIssues = async () => {
   const res = await fetch(
     "https://phi-lab-server.vercel.app/api/v1/lab/issues",
@@ -95,8 +95,9 @@ function ShowAllIssues(issues) {
     const div = document.createElement("div");
     div.className =
       "card bg-base-100 shadow-md rounded-xl border border-gray-200";
+
     div.innerHTML = `
-     <div class="card-body p-0 border-t-3 rounded-xl  ${issue.status == "open" ? "border-green-500" : "border-purple-500"} ">
+     <div onclick="loadSingleIssues('${issue.id}')" class="card-body p-0 border-t-3 rounded-xl  ${issue.status == "open" ? "border-green-500" : "border-purple-500"} ">
               <div class="p-4 space-y-3 h-full">
                 <div class="flex justify-between items-center">
                   <img src="${issue.status == "closed" ? "./assets/Closed-Status.png" : "./assets/Open-Status.png"}" />
@@ -151,7 +152,7 @@ const generateOpenCards = async (arr) => {
     div.className =
       "card bg-base-100 shadow-md rounded-xl border border-gray-200";
     div.innerHTML = `
-      <div class="card-body p-0 border-t-3 rounded-xl border-green-500 ">
+      <div onclick="loadSingleIssues('${open.id}')" class="card-body p-0 border-t-3 rounded-xl border-green-500 ">
               <div class="p-4 space-y-3 h-full">
                 <div class="flex justify-between items-center">
                   <img src="./assets/Open-Status.png" />
@@ -203,7 +204,7 @@ const generateCloseCards = async (arr) => {
     div.className =
       "card bg-base-100 shadow-md rounded-xl border border-gray-200";
     div.innerHTML = `
-        <div class="card-body p-0 border-t-3 rounded-xl border-purple-500"} ">
+        <div onclick="loadSingleIssues('${close.id}')" class="card-body p-0 border-t-3 rounded-xl border-purple-500"} ">
               <div class="p-4 space-y-3 h-full">
                 <div class="flex justify-between items-center">
                   <img src="./assets/Closed-Status.png"/>
@@ -244,5 +245,74 @@ const generateCloseCards = async (arr) => {
     allCards.appendChild(div);
   });
 };
+
+async function loadSingleIssues(id) {
+  const res = await fetch(
+    `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`,
+  );
+  const data = await res.json();
+  displayModal(data.data);
+}
+
+function displayModal(obj) {
+  const modalContainer = document.getElementById("modal-container");
+  modalContainer.innerHTML = `
+   <div class="modal-box">
+            <h3 class="text-lg font-bold">${obj.title}</h3>
+            <div class="flex gap-3 items-center">
+            ${
+              obj.status == "open"
+                ? `<span class="badge badge-success text-white rounded-full px-4"
+                >${obj.status}</span
+              >`
+                : `<span class="badge bg-purple-600 text-white rounded-full px-4">${obj.status}</span>`
+            }
+              
+              <span class="text-xs text-gray-600"
+                ><i class="fa-solid fa-circle-dot"></i> Opened by ${obj.assignee}</span
+              >
+              <span class="text-xs text-gray-600"
+                ><i class="fa-solid fa-circle-dot"></i> ${new Date(obj.updatedAt).toLocaleDateString()}</span
+              >
+            </div>
+            <div class="py-5">
+              ${generateBadgeStatus(obj.labels)}
+            </div>
+            <p class="text-sm text-gray-600">
+              ${obj.description}
+            </p>
+
+            <div class="py-5 grid grid-cols-2">
+              <div class="flex gap-1 flex-col">
+                <p class="text-sm text-gray-600">Assignee:</p>
+                <h3 class="text-[16px] text-neutral font-semibold uppercase">
+                  ${obj.assignee ? `${obj.assignee}` : "Did Not Found"}
+                </h3>
+              </div>
+              <div class="flex gap-1 flex-col">
+                <p class="text-sm text-gray-600">Priority:</p>
+                ${
+                  obj.priority == "high"
+                    ? `<span
+                    class="badge badge-error text-white border-0 rounded-full uppercase px-6 py-3.5"
+                    >${obj.priority}</span>`
+                    : `${
+                        obj.priority == "medium"
+                          ? `<span class="badge badge-warning text-white border-0 rounded-full uppercase px-6 py-3.5">${obj.priority}</span>`
+                          : `<span class="badge bg-gray-700 text-white border-0 rounded-full uppercase px-6 py-3.5">${obj.priority}</span>`
+                      }`
+                }
+              </div>
+            </div>
+            <div class="modal-action">
+              <form method="dialog">
+                <button class="btn btn-primary border-0">Close</button>
+              </form>
+            </div>
+          </div>
+   `;
+  document.getElementById("issue_modal").showModal();
+}
+loadSingleIssues();
 
 loadIssues();
