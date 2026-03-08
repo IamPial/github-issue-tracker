@@ -4,6 +4,7 @@ const openBtn = document.getElementById("open");
 const closedBtn = document.getElementById("closed");
 const issuesTitle = document.getElementById("issues-title");
 const allCards = document.getElementById("all-cards");
+const badgeStyle = document.getElementById("show-badge");
 
 async function showActive(id) {
   const res = await fetch(
@@ -51,6 +52,30 @@ const loadIssues = async () => {
   ShowAllIssues(data.data);
 };
 
+// generateBadgeStatus function
+function generateBadgeStatus(arr) {
+  const badgeStatus = arr.map((a) => {
+    return a == "bug"
+      ? `<div class="badge badge-outline bg-red-100 text-error rounded-full uppercase py-3.5">
+                    <i class="fa-solid fa-bug"></i>
+                    ${a}
+                  </div>`
+      : a == "help wanted"
+        ? `<div class="badge badge-warning bg-yellow-100 text-yellow-600 rounded-full uppercase py-3.5"><i class="fa-regular fa-life-ring"></i>
+                    ${a}
+                  </div>`
+        : a == "enhancement"
+          ? `<div class="badge badge-outline bg-green-100 text-success rounded-full uppercase py-3.5">
+      <i class="fa-solid fa-wand-magic-sparkles"></i>${a}</div>`
+          : a == "documentation"
+            ? `<div class="badge badge-outline badge-secondary bg-pink-100 text-pink-500 rounded-full uppercase py-3.5"><i class="fa-brands fa-readme"></i>${a}
+       </div>`
+            : `<div class="badge badge-outline badge-info bg-sky-100 text-info rounded-full uppercase py-3.5"><i class="fa-solid fa-star-of-life"></i>${a}</div>`;
+  });
+  return badgeStatus.join(" ");
+}
+
+// show all the issues
 function ShowAllIssues(issues) {
   allCards.innerHTML = "";
   issues.forEach((issue) => {
@@ -66,7 +91,7 @@ function ShowAllIssues(issues) {
                   ${
                     issue.priority == "high"
                       ? `<span
-                    class="badge badge-error bg-red-100 text-error border-0 rounded-full uppercase px-6"
+                    class="badge badge-error bg-red-100 text-error border-0 rounded-full uppercase px-6 py-3.5"
                     >${issue.priority}</span>`
                       : `${
                           issue.priority == "medium"
@@ -85,19 +110,8 @@ function ShowAllIssues(issues) {
                     ${issue.description}
                   </p>
                 </div>
-                <div class="card-actions justify-start ">
-                  <div
-                    class="badge badge-outline bg-red-100 text-error rounded-full uppercase px-4 py-3.5"
-                  >
-                    <i class="fa-solid fa-bug"></i>
-                    Bug
-                  </div>
-                  <div
-                    class="badge badge-warning bg-yellow-100 text-yellow-600 rounded-full uppercase px-4 py-3.5"
-                  >
-                    <i class="fa-regular fa-life-ring"></i>
-                    help wanted
-                  </div>
+                <div id="show-badge" class="card-actions justify-start gap-1">
+                  ${generateBadgeStatus(issue.labels)}
                 </div>
               </div>
               <div class="bg-gray-300 w-full h-0.5"></div>
@@ -111,4 +125,7 @@ function ShowAllIssues(issues) {
     allCards.appendChild(div);
   });
 }
+
+// TODO: work this badge function
+
 loadIssues();
