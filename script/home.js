@@ -7,13 +7,24 @@ const closedBtn = document.getElementById("closed");
 const issuesTitle = document.getElementById("issues-title");
 const allCards = document.getElementById("all-cards");
 const badgeStyle = document.getElementById("show-badge");
+const spinnerLoad = document.getElementById("loading-spinner");
+
+function loadSpinner(status) {
+  if (status == true) {
+    spinnerLoad.classList.remove("hidden");
+    allCards.classList.add("hidden");
+  } else {
+    spinnerLoad.classList.add("hidden");
+    allCards.classList.remove("hidden");
+  }
+}
 
 async function showActive(id) {
+  loadSpinner(true);
   const res = await fetch(
     "https://phi-lab-server.vercel.app/api/v1/lab/issues",
   );
   const data = await res.json();
-
   //added classes from the active btn
   allBtn.classList.add("btn-bg-base-200");
   openBtn.classList.add("btn-bg-base-200");
@@ -36,10 +47,12 @@ async function showActive(id) {
   if (activeBtn == openBtn) {
     generateOpenCards(data.data);
     issuesTitle.innerText = openArr.length + " " + "Issues";
+    loadSpinner(false);
   }
   if (activeBtn == closedBtn) {
     generateCloseCards(data.data);
     issuesTitle.innerText = closeArr.length + " " + "Issues";
+    loadSpinner(false);
   }
 }
 
@@ -123,6 +136,7 @@ function ShowAllIssues(issues) {
 
     `;
     allCards.appendChild(div);
+    loadSpinner(false);
   });
 }
 
