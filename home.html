@@ -191,8 +191,75 @@
             class="loading loading-bars loading-xl"
           ></span>
         </div>
+        <!-- loading Spinner End -->
         <!-- github issue section end -->
       </section>
+
+      <!-- modal start -->
+      <dialog id="issue_modal" class="modal">
+        <div
+          id="modal-container"
+          class="w-11/12 mx-auto flex justify-center items-center"
+        >
+          <div class="modal-box">
+            <h3 class="text-lg font-bold">Hello!</h3>
+            <div class="flex gap-3 items-center">
+              <span class="badge badge-success text-white rounded-full px-4"
+                >Open</span
+              >
+              <span class="text-xs text-gray-600"
+                ><i class="fa-solid fa-circle-dot"></i> Opened by Fahim
+                Ahmed</span
+              >
+              <span class="text-xs text-gray-600"
+                ><i class="fa-solid fa-circle-dot"></i> 22/02/2026</span
+              >
+            </div>
+            <div class="py-5">
+              <span
+                class="badge badge-outline bg-red-100 text-error rounded-full uppercase text-xs py-2 px-4"
+              >
+                <i class="fa-solid fa-bug"></i>
+                Bug
+              </span>
+              <span
+                class="badge badge-warning bg-yellow-100 text-yellow-600 rounded-full uppercase text-xs py-2 px-4"
+              >
+                <i class="fa-regular fa-life-ring"></i>
+                help wanted
+              </span>
+            </div>
+            <p class="text-sm text-gray-600">
+              The navigation menu doesn't collapse properly on mobile devices.
+              Need to fix the responsive behavior.
+            </p>
+
+            <div class="py-5 grid grid-cols-2">
+              <div class="flex gap-1 flex-col">
+                <p class="text-sm text-gray-600">Assignee:</p>
+                <h3 class="text-[16px] text-neutral font-semibold">
+                  Fahim Ahmed
+                </h3>
+              </div>
+              <div class="flex gap-1 flex-col">
+                <p class="text-sm text-gray-600">Priority:</p>
+                <span
+                  class="badge badge-error text-white border-0 rounded-full uppercase px-6 py-3.5"
+                >
+                  high
+                </span>
+              </div>
+            </div>
+            <div class="modal-action">
+              <form method="dialog">
+                <!-- if there is a button in form, it will close the modal -->
+                <button class="btn btn-primary">Close</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </dialog>
+      <!-- modal end -->
     </main>
 
     <script src="./script/home.js"></script>
