@@ -1,5 +1,5 @@
 let openArr = [];
-
+let closeArr = [];
 //find the necessary elements
 const allBtn = document.getElementById("all");
 const openBtn = document.getElementById("open");
@@ -13,7 +13,6 @@ async function showActive(id) {
     "https://phi-lab-server.vercel.app/api/v1/lab/issues",
   );
   const data = await res.json();
-  // console.log(data.data.length);
 
   //added classes from the active btn
   allBtn.classList.add("btn-bg-base-200");
@@ -44,7 +43,15 @@ async function showActive(id) {
       (closed) => closed.status == "closed",
     );
     issuesTitle.innerText = closedIssues.length + " " + "Issues";
+    generateCloseCards();
   }
+
+  console.log(
+    "open arr length:",
+    openArr.length,
+    "close arr length:",
+    closeArr.length,
+  );
 }
 
 // load single  issues
@@ -137,7 +144,7 @@ const generateOpenCards = async () => {
     "https://phi-lab-server.vercel.app/api/v1/lab/issues",
   );
   const data = await res.json();
-  data.data.map((d) => (d.status == "open" ? openArr.push(d) : "hell"));
+  data.data.map((d) => (d.status == "open" ? openArr.push(d) : ""));
   openArr.forEach((open) => {
     const div = document.createElement("div");
     div.className =
@@ -180,6 +187,64 @@ const generateOpenCards = async () => {
               </div>
             </div>
     `;
+    allCards.appendChild(div);
+  });
+};
+
+//generate cards for close status
+const generateCloseCards = async () => {
+  allCards.innerHTML = "";
+  const res = await fetch(
+    "https://phi-lab-server.vercel.app/api/v1/lab/issues",
+  );
+  const data = await res.json();
+  data.data.map((close) =>
+    close.status == "closed" ? closeArr.push(close) : "",
+  );
+
+  closeArr.forEach((close) => {
+    const div = document.createElement("div");
+    div.className =
+      "card bg-base-100 shadow-md rounded-xl border border-gray-200";
+    div.innerHTML = `
+        <div class="card-body p-0 border-t-3 rounded-xl border-purple-500"} ">
+              <div class="p-4 space-y-3 h-full">
+                <div class="flex justify-between items-center">
+                  <img src="./assets/Closed-Status.png"/>
+
+                  ${
+                    close.priority == "high"
+                      ? `<span
+                    class="badge badge-error bg-red-100 text-error border-0 rounded-full uppercase px-6 py-3.5"
+                    >${close.priority}</span>`
+                      : `${
+                          close.priority == "medium"
+                            ? `<span
+      class="badge badge-error bg-yellow-100 text-yellow-500 border-0 rounded-full uppercase px-6 py-3.5">${close.priority}
+    </span>`
+                            : `<span class="badge badge-error bg-gray-200 text-gray-400 border-0 rounded-full uppercase px-6 py-3.5">${close.priority}</span>`
+                        }`
+                  }
+                </div>
+                <div class="h-24">
+                  <h2 class="card-title font-semibold text-[16px] ">
+                    ${close.title}
+                  </h2>
+                  <p class="line-clamp-2 text-sm text-gray-500">
+                    ${close.description}
+                  </p>
+                </div>
+                <div id="show-badge" class="card-actions justify-start gap-1">
+                  ${generateBadgeStatus(close.labels)}
+                </div>
+              </div>
+              <div class="bg-gray-300 w-full h-0.5"></div>
+              <div class="p-4 space-y-2">
+                <p class="text-sm text-gray-500">#1 by ${close.author}</p>
+                <p class="text-sm text-gray-500">${new Date(close.createdAt).toLocaleDateString()}</p>
+              </div>
+            </div>
+      `;
     allCards.appendChild(div);
   });
 };
