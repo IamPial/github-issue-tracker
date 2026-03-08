@@ -34,24 +34,13 @@ async function showActive(id) {
     ShowAllIssues(data.data);
   }
   if (activeBtn == openBtn) {
-    const openIssues = data.data.filter((open) => open.status == "open");
-    issuesTitle.innerText = openIssues.length + " " + "Issues";
-    generateOpenCards();
+    generateOpenCards(data.data);
+    issuesTitle.innerText = openArr.length + " " + "Issues";
   }
   if (activeBtn == closedBtn) {
-    const closedIssues = data.data.filter(
-      (closed) => closed.status == "closed",
-    );
-    issuesTitle.innerText = closedIssues.length + " " + "Issues";
-    generateCloseCards();
+    generateCloseCards(data.data);
+    issuesTitle.innerText = closeArr.length + " " + "Issues";
   }
-
-  console.log(
-    "open arr length:",
-    openArr.length,
-    "close arr length:",
-    closeArr.length,
-  );
 }
 
 // load single  issues
@@ -138,13 +127,11 @@ function ShowAllIssues(issues) {
 }
 
 //generate cards for open status
-const generateOpenCards = async () => {
+const generateOpenCards = async (arr) => {
   allCards.innerHTML = "";
-  const res = await fetch(
-    "https://phi-lab-server.vercel.app/api/v1/lab/issues",
-  );
-  const data = await res.json();
-  data.data.map((d) => (d.status == "open" ? openArr.push(d) : ""));
+  //filtering the array of open status
+  openArr = arr.filter((open) => open.status === "open");
+  //render the open status
   openArr.forEach((open) => {
     const div = document.createElement("div");
     div.className =
@@ -192,16 +179,11 @@ const generateOpenCards = async () => {
 };
 
 //generate cards for close status
-const generateCloseCards = async () => {
+const generateCloseCards = async (arr) => {
   allCards.innerHTML = "";
-  const res = await fetch(
-    "https://phi-lab-server.vercel.app/api/v1/lab/issues",
-  );
-  const data = await res.json();
-  data.data.map((close) =>
-    close.status == "closed" ? closeArr.push(close) : "",
-  );
-
+  //filtering the array of close status
+  closeArr = arr.filter((close) => close.status === "closed");
+  //rendering the close status
   closeArr.forEach((close) => {
     const div = document.createElement("div");
     div.className =
