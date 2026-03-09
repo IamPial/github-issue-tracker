@@ -7,4 +7,4 @@
 
 ### What is the difference between var, let and const?
 
-\*\*\* var: var is a global scope. when a global variable declare with var keyword, it is possible to reassign the variable to the block scope or global scope and it is also update the value.
+\* var: var is a function scope. when a global variable declare with var keyword, it is possible to reassign the variable to the block scope or global scope and it is also update the value and also redeclare the variable.
