@@ -28,3 +28,7 @@
 ### What is an arrow function?
 
 \* arrow function: arrow function is a shorthand syntax function for better readability in JavaScript code, it is introduced a ES6 features.
+
+### What are template literals?
+
+\* template literals: template literals is use for multiple line of JavaScript string code and it's also be able to render the any type of javaScript code like function, object, array etc.
