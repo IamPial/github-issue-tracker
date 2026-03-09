@@ -42,7 +42,7 @@ async function showActive(id) {
 
   if (activeBtn == allBtn) {
     issuesTitle.innerText = data.data.length + " " + "Issues";
-    ShowAllIssues(data.data);
+    showAllIssues(data.data);
   }
   if (activeBtn == openBtn) {
     generateOpenCards(data.data);
@@ -62,7 +62,7 @@ const loadIssues = async () => {
     "https://phi-lab-server.vercel.app/api/v1/lab/issues",
   );
   const data = await res.json();
-  ShowAllIssues(data.data);
+  showAllIssues(data.data);
 };
 
 // generateBadgeStatus function
@@ -89,7 +89,7 @@ function generateBadgeStatus(arr) {
 }
 
 // show all the issues
-function ShowAllIssues(issues) {
+function showAllIssues(issues) {
   allCards.innerHTML = "";
   issues.forEach((issue) => {
     const div = document.createElement("div");
@@ -246,6 +246,7 @@ const generateCloseCards = async (arr) => {
   });
 };
 
+// loading single function for creating modal
 async function loadSingleIssues(id) {
   const res = await fetch(
     `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`,
@@ -254,6 +255,7 @@ async function loadSingleIssues(id) {
   displayModal(data.data);
 }
 
+// display modal info
 function displayModal(obj) {
   const modalContainer = document.getElementById("modal-container");
   modalContainer.innerHTML = `
@@ -313,6 +315,27 @@ function displayModal(obj) {
    `;
   document.getElementById("issue_modal").showModal();
 }
-loadSingleIssues();
+
+//generate searchIssue func for searching data
+const searchIssues = async (searchText) => {
+  const res = await fetch(
+    `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchText}`,
+  );
+  const data = await res.json();
+  console.log(data.data);
+  const searchWord = data.data;
+  const filterIssues = searchWord.filter((d) =>
+    d.title.toLowerCase().includes(searchText),
+  );
+  showAllIssues(filterIssues);
+  issuesTitle.innerText = filterIssues.length + " " + "Issues";
+};
+
+//added event listener to the search btn to finding search data
+document.getElementById("search-btn").addEventListener("click", () => {
+  const input = document.getElementById("search-input");
+  const searchValue = input.value.trim().toLowerCase();
+  searchIssues(searchValue);
+});
 
 loadIssues();
