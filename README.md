@@ -12,3 +12,7 @@
 \* let: let is a block scope. when a global variable declare with let keyword, it is possible to reassign the value from anywhere to the code, but it can't be possible to declare a variable in a function and access from the outside of the function.
 
 \* const: const is also a block scope. when a global variable declare with const keyword , it's not be able to change the assigning value and it also not allow reassign, redeclare or updating the value.
+
+### What is the spread operator (...)?
+
+\* spread: spread operator is a operator that can be able expand all the data from the array or properties of an object.
