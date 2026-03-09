@@ -271,7 +271,7 @@ function displayModal(obj) {
             }
               
               <span class="text-xs text-gray-600"
-                ><i class="fa-solid fa-circle-dot"></i> Opened by ${obj.assignee}</span
+                ><i class="fa-solid fa-circle-dot"></i> ${obj.status == "open" ? "Opened" : "Closed"} by ${obj.assignee}</span
               >
               <span class="text-xs text-gray-600"
                 ><i class="fa-solid fa-circle-dot"></i> ${new Date(obj.updatedAt).toLocaleDateString()}</span
