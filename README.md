@@ -24,3 +24,7 @@
 \* filter() : looping an array with filter() methods its check the conditions and filter the array with the conditions and returns a new array.
 
 \* forEach() : looping an array it can be possible to change the array of elements but it did not returns a new array, it always existing array.
+
+### What is an arrow function?
+
+\* arrow function: arrow function is a shorthand syntax function for better readability in JavaScript code, it is introduced a ES6 features.
