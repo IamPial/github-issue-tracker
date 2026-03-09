@@ -16,3 +16,11 @@
 ### What is the spread operator (...)?
 
 \* spread: spread operator is a operator that can be able expand all the data from the array or properties of an object.
+
+### What is the difference between map(), filter(), and forEach()?
+
+\* map() : looping an array with map() methods it's always returns a new array.
+
+\* filter() : looping an array with filter() methods its check the conditions and filter the array with the conditions and returns a new array.
+
+\* forEach() : looping an array it can be possible to change the array of elements but it did not returns a new array, it always existing array.
