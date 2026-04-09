@@ -1,27 +1,153 @@
-### What is the difference between var, let and const?
+#  GitHub Issue Tracker
 
-\* var: var is a function scope. when a global variable declare with var keyword, it is possible to reassign the variable to the block scope or global scope and it is also update the value and also redeclare the variable.
+> **GitHub Issue Tracker** is a clean and responsive web application to track and manage project issues. Filter by status, search by keyword, and view detailed issue information — all in a simple and intuitive interface.
 
-\* let: let is a block scope. when a global variable declare with let keyword, it is possible to reassign the value from anywhere to the code, but it can't be possible to declare a variable in a function and access from the outside of the function.
+---
 
-\* const: const is also a block scope. when a global variable declare with const keyword , it's not be able to change the assigning value and it also not allow reassign, redeclare or updating the value.
+## 🌐 Live Demo
 
-### What is the spread operator (...)?
+🔗 [Github Issue Tracker](https://github-issue-tracker-app.vercel.app/) 
+---
 
-\* spread: spread operator is a operator that can be able expand all the data from the array or properties of an object.
+##  Preview
 
-### What is the difference between map(), filter(), and forEach()?
+[View Image](./assets/issue-tracker.png)
 
-\* map() : looping an array with map() methods it's always returns a new array.
+---
 
-\* filter() : looping an array with filter() methods its check the conditions and filter the array with the conditions and returns a new array.
+##  Features
 
-\* forEach() : looping an array it can be possible to change the array of elements but it did not returns a new array, it always existing array.
+-  **Login Page** — Simple authentication with demo credentials
+-  **Issue Dashboard** — View all project issues in a card grid layout
+-  **Filter by Status** — Toggle between All / Open / Closed issues
+-  **Search Issues** — Search issues by title in real-time
+-  **Label Badges** — Color-coded labels (Bug, Help Wanted, Enhancement, Documentation)
+-  **Priority Indicators** — High / Medium / Low priority badges
+-  **Issue Detail Modal** — Click any card to see full issue details
+-  **Loading Spinner** — Shown while fetching data from API
+-  **Fully Responsive** — Works on mobile, tablet & desktop
 
-### What is an arrow function?
+---
 
-\* arrow function: arrow function is a shorthand syntax function for better readability in JavaScript code, it is introduced a ES6 features.
+## 🛠️ Tech Stack
 
-### What are template literals?
+| Technology | Purpose |
+|---|---|
+|  **HTML5** | Page structure |
+|  **Tailwind CSS v4** | Utility-first styling (via CDN) |
+|  **DaisyUI v5** | UI Component library |
+|  **Vanilla JavaScript** | DOM manipulation & API calls |
+|  **Font Awesome 7** | Icons |
+|  **Geist** | Typography (Google Fonts) |
+|  **REST API** | Live issue data from external server |
 
-\* template literals: template literals is use for multiple line of JavaScript string code and it's also be able to render the any type of javaScript code like function, object, array etc.
+---
+
+## 📁 Project Structure
+
+```
+github-issue-tracker/
+├── assets/
+│   ├── github-logo.png
+│   ├── favicon-github.png
+│   ├── Aperture.png
+│   ├── Open-Status.png
+│   └── Closed-Status.png
+│
+├── styles/
+│   ├── style.css              # Custom CSS (font, btn-primary color)
+│   └── tailwind_init.css      # Tailwind import
+│
+├── script/
+│   ├── home.js                # Issue fetching, filtering, search, modal
+│   └── login.js               # Login validation & redirect
+│
+├── index.html                 # Login page
+└── home.html                  # Issue dashboard
+```
+
+---
+
+##  Getting Started
+
+**1. Clone the repository**
+```bash
+git clone https://github.com/IamPial/github-issue-tracker.git
+cd github-issue-tracker
+```
+
+**2. Open in browser**
+
+`index.html` ফাইলটি browser-এ open করো অথবা VS Code Live Server দিয়ে চালাও।
+
+```
+index.html → home.html
+```
+
+> ⚠️ API calls সঠিকভাবে কাজ করতে **Live Server** ব্যবহার করো, সরাসরি ফাইল open করলে CORS issue হতে পারে।
+
+---
+
+## 🔐 Demo Credentials
+
+| Field | Value |
+|---|---|
+| Username | `admin` |
+| Password | `admin123` |
+
+---
+
+## 🌐 API Reference
+
+Base URL: `https://phi-lab-server.vercel.app/api/v1/lab`
+
+| Endpoint | Method | Description |
+|---|---|---|
+| `/issues` | GET | সব issues fetch করে |
+| `/issue/:id` | GET | একটি নির্দিষ্ট issue fetch করে |
+| `/issues/search?q=keyword` | GET | Keyword দিয়ে issues search করে |
+
+---
+
+## ⚙️ Key Functionality
+
+### Login (`login.js`)
+- Username ও password validation
+- সঠিক credentials দিলে `home.html`-এ redirect
+
+### Issue Dashboard (`home.js`)
+- **`loadIssues()`** — পেজ লোডে সব issues fetch করে
+- **`showActive(id)`** — All / Open / Closed ফিল্টার করে
+- **`showAllIssues(issues)`** — Issues কার্ড হিসেবে render করে
+- **`generateBadgeStatus(labels)`** — Label অনুযায়ী colored badge তৈরি করে
+- **`loadSingleIssues(id)`** — একটি issue-এর details fetch করে
+- **`displayModal(obj)`** — Modal-এ issue details দেখায়
+- **`searchIssues(text)`** — API-তে search request পাঠায়
+
+---
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a branch: `git checkout -b feature/your-feature`
+3. Commit: `git commit -m "Add your feature"`
+4. Push: `git push origin feature/your-feature`
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](./LICENSE).
+
+---
+
+## 👨‍💻 Author
+
+**Your Name**
+- GitHub: [@your-username](https://github.com/your-username)
+- LinkedIn: [your-linkedin](https://linkedin.com/in/your-linkedin)
+
+---
+
+<p align="center">Made with ❤️ | GitHub Issue Tracker 🐛</p>
