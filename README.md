@@ -6,12 +6,13 @@
 
 ## 🌐 Live Demo
 
-🔗 [Github Issue Tracker](https://github-issue-tracker-app.vercel.app/) 
+🔗 [Github Issue Tracker](https://github-issue-tracker-app.vercel.app/)
+
 ---
 
 ##  Preview
 
-[View Image](./assets/issue-tracker.png)
+![Preview](./assets/issue-tracker.png)
 
 ---
 
@@ -68,7 +69,7 @@ github-issue-tracker/
 
 ---
 
-##  Getting Started
+## 🚀 Getting Started
 
 **1. Clone the repository**
 ```bash
@@ -78,13 +79,13 @@ cd github-issue-tracker
 
 **2. Open in browser**
 
-`index.html` ফাইলটি browser-এ open করো অথবা VS Code Live Server দিয়ে চালাও।
+Open `index.html` directly in your browser or use VS Code Live Server.
 
 ```
 index.html → home.html
 ```
 
-> ⚠️ API calls সঠিকভাবে কাজ করতে **Live Server** ব্যবহার করো, সরাসরি ফাইল open করলে CORS issue হতে পারে।
+> ⚠️ Use **Live Server** for API calls to work correctly. Opening the file directly may cause CORS issues.
 
 ---
 
@@ -103,35 +104,35 @@ Base URL: `https://phi-lab-server.vercel.app/api/v1/lab`
 
 | Endpoint | Method | Description |
 |---|---|---|
-| `/issues` | GET | সব issues fetch করে |
-| `/issue/:id` | GET | একটি নির্দিষ্ট issue fetch করে |
-| `/issues/search?q=keyword` | GET | Keyword দিয়ে issues search করে |
+| `/issues` | GET | Fetch all issues |
+| `/issue/:id` | GET | Fetch a single issue by ID |
+| `/issues/search?q=keyword` | GET | Search issues by keyword |
 
 ---
 
 ## ⚙️ Key Functionality
 
 ### Login (`login.js`)
-- Username ও password validation
-- সঠিক credentials দিলে `home.html`-এ redirect
+- Validates username and password fields
+- Redirects to `home.html` on successful login
 
 ### Issue Dashboard (`home.js`)
-- **`loadIssues()`** — পেজ লোডে সব issues fetch করে
-- **`showActive(id)`** — All / Open / Closed ফিল্টার করে
-- **`showAllIssues(issues)`** — Issues কার্ড হিসেবে render করে
-- **`generateBadgeStatus(labels)`** — Label অনুযায়ী colored badge তৈরি করে
-- **`loadSingleIssues(id)`** — একটি issue-এর details fetch করে
-- **`displayModal(obj)`** — Modal-এ issue details দেখায়
-- **`searchIssues(text)`** — API-তে search request পাঠায়
+- **`loadIssues()`** — Fetches all issues on page load
+- **`showActive(id)`** — Filters issues by All / Open / Closed
+- **`showAllIssues(issues)`** — Renders issues as cards in the grid
+- **`generateBadgeStatus(labels)`** — Generates color-coded label badges
+- **`loadSingleIssues(id)`** — Fetches details of a single issue
+- **`displayModal(obj)`** — Displays issue details inside a modal
+- **`searchIssues(text)`** — Sends a search request to the API
 
 ---
 
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create a branch: `git checkout -b feature/your-feature`
-3. Commit: `git commit -m "Add your feature"`
-4. Push: `git push origin feature/your-feature`
+2. Create a branch: 
+3. Commit: 
+4. Push: 
 5. Open a Pull Request
 
 ---
@@ -142,12 +143,8 @@ This project is licensed under the [MIT License](./LICENSE).
 
 ---
 
-## 👨‍💻 Author
+##  Author
 
-**Your Name**
-- GitHub: [@your-username](https://github.com/your-username)
-- LinkedIn: [your-linkedin](https://linkedin.com/in/your-linkedin)
-
----
-
-<p align="center">Made with ❤️ | GitHub Issue Tracker 🐛</p>
+**Pial Uddin**
+- GitHub: [@IamPial](https://github.com/IamPial)
+- LinkedIn: [Linkedin](https://linkedin.com/in/pial-uddin)
